@@ -1,26 +1,24 @@
-package com.vn.bookservice.command.command;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+package com.vn.bookservice.command.event;
 
 
 
-public class CreatedBookCommand {
-    @TargetAggregateIdentifier
+
+
+
+public class BookCreatedEvent {
     private String id;
     private String name;
     private String author;
     private Boolean isReady;
 
-    public CreatedBookCommand(String id, String name, String author, Boolean isReady) {
+    public BookCreatedEvent() {
+    }
+
+    public BookCreatedEvent(String id, String name, String author, Boolean isReady) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.isReady = isReady;
-    }
-
-    public CreatedBookCommand() {
     }
 
     public String getId() {
@@ -51,12 +49,10 @@ public class CreatedBookCommand {
         return isReady;
     }
 
-    public void setReady(Boolean ready) {
+    public void setIsReady(Boolean ready) {
         isReady = ready;
     }
-
-    @Override
     public String toString() {
-        return id + " " + name + " " + author + " " + isReady;
+        return "BookCreatedEvent [id=" + id + ", name=" + name + ", author=" + author+", isReady=" + isReady + "]";
     }
 }

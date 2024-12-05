@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class BookEventsHandler {
 
@@ -17,12 +19,31 @@ public class BookEventsHandler {
     @EventHandler
     public void on(BookCreatedEvent event) {
         Book book = new Book();
-        System.out.println(">>>>>>>>>>>>>>>>>>>>"+event.toString());
-//        BeanUtils.copyProperties(event, book);
-        book.setName(event.getName());
-        book.setAuthor(event.getAuthor());
-        book.setIsReady(event.getIsReady());
-        System.out.println(">>>>>>>>>>>>>>>>>>>>"+book.toString());
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>"+event.toString());
+        BeanUtils.copyProperties(event, book);
+//        book.setName(event.getName());
+//        book.setAuthor(event.getAuthor());
+//        book.setIsReady(event.getIsReady());
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>"+book.toString());
         bookRepository.save(book);
+    }
+
+    @EventHandler
+    public void on(BookUpdatedEvent event) {
+        Optional<Book> book = this.bookRepository.findById(event.getId());
+        if(book.isPresent()) {
+            Book book1 = book.get();
+            book1.setName(event.getName());
+            book1.setAuthor(event.getAuthor());
+            book1.setIsReady(event.getIsReady());
+            bookRepository.save(book1);
+        }
+    }
+    @EventHandler
+    public void on(BookDeletedEvent event) {
+        Optional<Book> book = this.bookRepository.findById(event.getId());
+        if(book.isPresent()) {
+            this.bookRepository.delete(book.get());
+        }
     }
 }

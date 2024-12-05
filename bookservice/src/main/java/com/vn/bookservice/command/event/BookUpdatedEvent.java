@@ -1,33 +1,20 @@
-package com.vn.bookservice.command.data;
+package com.vn.bookservice.command.event;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+public class BookUpdatedEvent {
 
-import lombok.NoArgsConstructor;
-
-
-@Entity
-@Table(name = "books")
-
-public class Book {
-    @Id
     private String id;
     private String name;
     private String author;
     private Boolean isReady;
 
-    public Book() {
+    public BookUpdatedEvent() {
     }
 
-    public Book(String name, String author, Boolean isReady) {
+    public BookUpdatedEvent(String id, String name, String author, Boolean isReady) {
+        this.id = id;
         this.name = name;
         this.author = author;
         this.isReady = isReady;
-    }
-
-    @Override
-    public String toString() {
-        return "Book [id=" + id + ", name=" + name + ", author=" + author+", isReady=" + isReady + "]" ;
     }
 
     public String getId() {

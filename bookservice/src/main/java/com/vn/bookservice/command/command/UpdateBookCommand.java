@@ -1,33 +1,22 @@
-package com.vn.bookservice.command.data;
+package com.vn.bookservice.command.command;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import lombok.NoArgsConstructor;
-
-
-@Entity
-@Table(name = "books")
-
-public class Book {
-    @Id
+public class UpdateBookCommand {
+    @TargetAggregateIdentifier
     private String id;
     private String name;
     private String author;
     private Boolean isReady;
 
-    public Book() {
+    public UpdateBookCommand() {
     }
 
-    public Book(String name, String author, Boolean isReady) {
+    public UpdateBookCommand(String id, String name, String author, Boolean isReady) {
+        this.id = id;
         this.name = name;
         this.author = author;
         this.isReady = isReady;
-    }
-
-    @Override
-    public String toString() {
-        return "Book [id=" + id + ", name=" + name + ", author=" + author+", isReady=" + isReady + "]" ;
     }
 
     public String getId() {

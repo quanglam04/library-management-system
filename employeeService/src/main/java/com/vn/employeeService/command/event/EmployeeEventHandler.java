@@ -4,13 +4,15 @@ package com.vn.employeeService.command.event;
 import com.vn.employeeService.command.data.Employee;
 import com.vn.employeeService.command.data.EmployeeRepository;
 import jakarta.ws.rs.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
+import org.axonframework.eventhandling.DisallowReplay;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@Slf4j
 @Component
 public class EmployeeEventHandler {
 
@@ -37,9 +39,16 @@ public class EmployeeEventHandler {
     }
 
     @EventHandler
-    public void on(EmployeeDeleteEvent event) throws Exception {
-        Optional<Employee> employee = this.employeeRepository.findById(event.getId());
-        Employee employee1 = employee.orElseThrow(() -> new Exception("Employee not found"));
-        employeeRepository.delete(employee1);
+    @DisallowReplay
+    public void on(EmployeeDeleteEvent event) {
+        try{
+            Optional<Employee> employee = this.employeeRepository.findById(event.getId());
+            Employee employee1 = employee.orElseThrow(() -> new Exception("Employee not found"));
+            employeeRepository.delete(employee1);
+        }
+        catch (Exception error){
+            log.error(error.getMessage());
+        }
+
     }
 }

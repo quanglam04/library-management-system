@@ -5,6 +5,7 @@ import com.vn.employeeService.command.data.EmployeeRepository;
 import com.vn.employeeService.query.model.EmployeeResponseModel;
 import com.vn.employeeService.query.queries.GetAllEmployeeQuery;
 import com.vn.employeeService.query.queries.GetDetailEmployeeQuery;
+import org.axonframework.eventhandling.DisallowReplay;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class EmployeeProjection {
     private EmployeeRepository employeeRepository;
 
     @QueryHandler
+    @DisallowReplay
     public List<EmployeeResponseModel> handle(GetAllEmployeeQuery getAllEmployeeQuery) {
         List<Employee> list = employeeRepository.findAllByIsDisciplined(getAllEmployeeQuery.getIsDisciplined());
         System.out.println(list.toString());
@@ -33,6 +35,7 @@ public class EmployeeProjection {
     }
 
     @QueryHandler
+    @DisallowReplay
     public EmployeeResponseModel handle(GetDetailEmployeeQuery getDetailEmployeeQuery) throws Exception {
         Employee e =  employeeRepository.findById(getDetailEmployeeQuery.getId()).orElseThrow(() -> new Exception("Employee not found"));
         EmployeeResponseModel employeeResponseModel = new EmployeeResponseModel();

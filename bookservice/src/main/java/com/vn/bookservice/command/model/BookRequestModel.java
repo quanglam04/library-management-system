@@ -1,15 +1,17 @@
 package com.vn.bookservice.command.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class BookRequestModel {
 
     private String id;
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 2,message = "Name must be grater than 2 character")
     private String name;
+
+    @NotBlank(message = "Author is mandatory")
     private String author;
     private Boolean isReady;
 

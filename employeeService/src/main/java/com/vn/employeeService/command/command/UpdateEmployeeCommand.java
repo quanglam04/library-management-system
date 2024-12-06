@@ -9,17 +9,17 @@ public class UpdateEmployeeCommand {
     private String firstName;
     private String lastName;
     private String kin;
-    private Boolean isDiscipline;
+    private Boolean isDisciplined;
 
     public UpdateEmployeeCommand() {
     }
 
-    public UpdateEmployeeCommand(String id, String firstName, String lastName, String kin, Boolean isDiscipline) {
+    public UpdateEmployeeCommand(String id, String firstName, String lastName, String kin, Boolean isDisciplined) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.kin = kin;
-        this.isDiscipline = isDiscipline;
+        this.isDisciplined = isDisciplined;
     }
 
     public String getId() {
@@ -54,11 +54,11 @@ public class UpdateEmployeeCommand {
         this.kin = kin;
     }
 
-    public Boolean getDiscipline() {
-        return isDiscipline;
+    public Boolean getIsDisciplined() {
+        return isDisciplined;
     }
 
-    public void setDiscipline(Boolean discipline) {
-        isDiscipline = discipline;
+    public void setIsDisciplined(Boolean isDisciplined) {
+        isDisciplined = isDisciplined;
     }
 }

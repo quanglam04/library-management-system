@@ -11,17 +11,17 @@ public class UpdateEmployeeModel {
     private String lastName;
     @NotBlank(message = "kin is mandatory")
     private String kin;
-    @NotNull(message = "isDiscipline is mandatory")
-    private Boolean isDiscipline;
+    @NotNull(message = "isDisciplined is mandatory")
+    private Boolean isDisciplined;
 
     public UpdateEmployeeModel() {
     }
 
-    public UpdateEmployeeModel(String firstName, String lastName, String kin, Boolean isDiscipline) {
+    public UpdateEmployeeModel(String firstName, String lastName, String kin, Boolean isDisciplined) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.kin = kin;
-        this.isDiscipline = isDiscipline;
+        this.isDisciplined = isDisciplined;
     }
 
     public String getFirstName() {
@@ -48,11 +48,11 @@ public class UpdateEmployeeModel {
         this.kin = kin;
     }
 
-    public Boolean getDiscipline() {
-        return isDiscipline;
+    public Boolean getIsDisciplined() {
+        return isDisciplined;
     }
 
-    public void setDiscipline(Boolean discipline) {
-        isDiscipline = discipline;
+    public void setIsDisciplined(Boolean isDisciplined) {
+        isDisciplined = isDisciplined;
     }
 }

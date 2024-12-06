@@ -9,16 +9,21 @@ public class CreateEmployeeCommand {
     private String firstName;
     private String lastName;
     private String kin;
-    private Boolean isDiscipline;
+    private Boolean isDisciplined;
 
-    public CreateEmployeeCommand(String id, String firstName, String lastName, String kin, Boolean isDiscipline) {
+    public CreateEmployeeCommand(String id, String firstName, String lastName, String kin, Boolean isDisciplined) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.kin = kin;
-        this.isDiscipline = isDiscipline;
+        this.isDisciplined = isDisciplined;
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "CreateEmployeeCommand [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", kin=" + kin + ", isDisciplined=" + isDisciplined + "]";
     }
 
     public CreateEmployeeCommand() {
@@ -56,11 +61,11 @@ public class CreateEmployeeCommand {
         this.kin = kin;
     }
 
-    public Boolean getDiscipline() {
-        return isDiscipline;
+    public Boolean getIsDisciplined() {
+        return isDisciplined;
     }
 
-    public void setDiscipline(Boolean discipline) {
-        isDiscipline = discipline;
+    public void setIsDisciplined(Boolean isDisciplined) {
+        this.isDisciplined = isDisciplined;
     }
 }

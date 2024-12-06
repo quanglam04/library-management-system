@@ -21,12 +21,13 @@ public class EmployeeAggregate {
     private String firstName;
     private String lastName;
     private String kin;
-    private Boolean isDiscipline;
+    private Boolean isDisciplined;
 
     public EmployeeAggregate() {}
     @CommandHandler
     public EmployeeAggregate(CreateEmployeeCommand command) {
         EmployeeCreatedEvent event = new EmployeeCreatedEvent();
+        System.out.println(command.toString());
         BeanUtils.copyProperties(command, event);
         AggregateLifecycle.apply(event);
     }
@@ -51,7 +52,7 @@ public class EmployeeAggregate {
         this.firstName = event.getFirstName();
         this.lastName = event.getLastName();
         this.kin = event.getKin();
-        this.isDiscipline = event.getDiscipline();
+        this.isDisciplined = event.getIsDisciplined();
     }
 
     @EventHandler
@@ -60,7 +61,7 @@ public class EmployeeAggregate {
         this.firstName = event.getFirstName();
         this.lastName = event.getLastName();
         this.kin = event.getKin();
-        this.isDiscipline = event.getDisliplined();
+        this.isDisciplined = event.getDisliplined();
     }
 
     @EventHandler

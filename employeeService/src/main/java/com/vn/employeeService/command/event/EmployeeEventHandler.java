@@ -33,7 +33,7 @@ public class EmployeeEventHandler {
             employee1.setFirstName(event.getFirstName());
             employee1.setLastName(event.getLastName());
             employee1.setKin(event.getKin());
-            employee1.setDiscipline(employee1.getDiscipline());
+            employee1.setIsDisciplined(employee1.getIsDisciplined());
             employeeRepository.save(employee1);
 
     }

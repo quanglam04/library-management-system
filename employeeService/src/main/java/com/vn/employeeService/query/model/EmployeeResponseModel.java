@@ -1,21 +1,21 @@
-package com.vn.employeeService.command.event;
+package com.vn.employeeService.query.model;
 
-public class EmployeeCreatedEvent {
+public class EmployeeResponseModel {
     private String id;
     private String firstName;
     private String lastName;
     private String kin;
     private Boolean isDisciplined;
 
-    public EmployeeCreatedEvent(String id, String firstName, String lastName, String kin, Boolean isDisciplined) {
+    public EmployeeResponseModel() {
+    }
+
+    public EmployeeResponseModel(String id, String firstName, String lastName, String kin, Boolean isDisciplined) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.kin = kin;
         this.isDisciplined = isDisciplined;
-    }
-
-    public EmployeeCreatedEvent() {
     }
 
     public String getId() {

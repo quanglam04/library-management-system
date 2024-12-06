@@ -29,7 +29,7 @@ public class EmployeeCommandController {
     }
 
     @PutMapping("/{id}")
-    public String updateEmployee(@Valid @RequestBody EmployeeUpdatedEvent employeeUpdatedEvent , @PathVariable("id") String id) {
+    public String updateEmployee(@Valid @RequestBody EmployeeUpdatedEvent employeeUpdatedEvent , @PathVariable String id) {
         UpdateEmployeeCommand command = new UpdateEmployeeCommand(id,employeeUpdatedEvent.getFirstName(),employeeUpdatedEvent.getLastName(),employeeUpdatedEvent.getKin(),employeeUpdatedEvent.getDisliplined());
         return commandGateway.sendAndWait(command);
 

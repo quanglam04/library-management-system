@@ -2,6 +2,7 @@ package com.vn.employeeService.command.controller;
 
 
 import com.vn.employeeService.command.command.CreateEmployeeCommand;
+import com.vn.employeeService.command.command.DeleteEmployeeCommand;
 import com.vn.employeeService.command.command.UpdateEmployeeCommand;
 import com.vn.employeeService.command.data.Employee;
 import com.vn.employeeService.command.event.EmployeeUpdatedEvent;
@@ -33,5 +34,11 @@ public class EmployeeCommandController {
         return commandGateway.sendAndWait(command);
 
 
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable("id") String id) {
+        DeleteEmployeeCommand command = new DeleteEmployeeCommand(id);
+        return commandGateway.sendAndWait(command);
     }
 }

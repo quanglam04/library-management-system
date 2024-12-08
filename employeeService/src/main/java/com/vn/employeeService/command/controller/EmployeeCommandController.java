@@ -4,7 +4,6 @@ package com.vn.employeeService.command.controller;
 import com.vn.employeeService.command.command.CreateEmployeeCommand;
 import com.vn.employeeService.command.command.DeleteEmployeeCommand;
 import com.vn.employeeService.command.command.UpdateEmployeeCommand;
-import com.vn.employeeService.command.data.Employee;
 import com.vn.employeeService.command.event.EmployeeUpdatedEvent;
 import com.vn.employeeService.command.model.EmployeeCreateModel;
 import io.swagger.v3.oas.annotations.Operation;

@@ -3,7 +3,7 @@
 
 # Spring Boot Microservice Architecture
 
-![Demo](springBoot_Microservice.png)
+![Demo](springboot_microservice.jpg)
 
 
 </div>

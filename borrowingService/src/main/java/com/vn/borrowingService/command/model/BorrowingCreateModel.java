@@ -6,12 +6,11 @@ public class BorrowingCreateModel {
 
     private String bookId;
     private String employeeId;
-    private Date borrowDate;
 
-    public BorrowingCreateModel(String bookId, String employeeId, Date borrowDate) {
+    public BorrowingCreateModel(String bookId, String employeeId) {
         this.bookId = bookId;
         this.employeeId = employeeId;
-        this.borrowDate = borrowDate;
+
     }
 
     public String getBookId() {
@@ -30,11 +29,5 @@ public class BorrowingCreateModel {
         this.employeeId = employeeId;
     }
 
-    public Date getBorrowDate() {
-        return borrowDate;
-    }
 
-    public void setBorrowDate(Date borrowDate) {
-        this.borrowDate = borrowDate;
-    }
 }

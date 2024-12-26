@@ -12,6 +12,9 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Component
 public class EventConsumer {
     @Autowired
@@ -42,6 +45,17 @@ public class EventConsumer {
 
 
         emailService.sendSimpleMail(message,"Thanks for listening","test",true,null);
+
+    }
+
+    @KafkaListener(topics = "emailTemplate",containerFactory = "kafkaListenerContainerFactory")
+    public void testEmailTemplate(String message){
+        System.out.println("Received message: " + message);
+        Map<String,Object> map = new HashMap<>();
+        map.put("idCode","TrinhQuangLam");
+        emailService.sendEmailWithTemplate(message,"Welcome to Christmas","emailTemplate.ftl",map,null);
+
+
 
     }
 

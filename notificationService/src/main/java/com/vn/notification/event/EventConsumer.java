@@ -1,7 +1,9 @@
 package com.vn.notification.event;
 
 
+import com.vn.commonService.services.EmailService;
 import org.apache.kafka.common.errors.RetriableException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
@@ -12,6 +14,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EventConsumer {
+    @Autowired
+    private EmailService emailService;
+
 
     @RetryableTopic(
             attempts = "4" ,// 3 topic retry + 1 topic DLQ
@@ -30,5 +35,16 @@ public class EventConsumer {
     void processDltMessage(@Payload String message){
         System.out.println("DLT receive message: "+message);
     }
+
+    @KafkaListener(topics = "testEmail",containerFactory = "kafkaListenerContainerFactory")
+    public void testEmail(String message){
+        System.out.println("Received message: " + message);
+
+
+        emailService.sendSimpleMail(message,"Thanks for listening","test",true,null);
+
+    }
+
+
 
 }
